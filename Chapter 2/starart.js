@@ -16,7 +16,7 @@ function drawLeftStars(num) {
   }
 }
 
-//drawLeftStars(7);
+drawLeftStars(7);
 
 function drawRightStars(num) {
   if (num <= 75) {
@@ -34,13 +34,22 @@ function drawRightStars(num) {
   }
 }
 
-//drawRightStars(70);
+drawRightStars(70);
 
 function drawCenteredStars(num) {
   if (num <= 75) {
     var str = "";
     var num_spaces = 75 - num;
-    console.log(num_spaces/2);
+    for (var i = 1; i <= Math.floor(num_spaces/2); i++) {
+      str += " ";
+    }
+    for (var x = 1; x <= num; x++) {
+      str += "*";
+    }
+    for (var y = 1; y <= Math.ceil(num_spaces/2); y++) {
+      str += " ";
+    }
+    console.log(str);
   } else {
     console.log("Please use a number that is less than or equal to 75");
   }
