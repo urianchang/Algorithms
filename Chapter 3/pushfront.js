@@ -14,6 +14,6 @@ function pushF(arr, value) {
     return arr;
 }
 
-arr = [1, 2, 3]
-value = 4
+var arr = [1, 2, 3]
+var value = 4
 console.log(pushF(arr, value));
