@@ -7,7 +7,7 @@ of the array. Do this without using any built-in array methods.
 function pushF(arr, value) {
     arr[arr.length] = value;
     for (var x = arr.length-1; x > 0; x--) {
-        temp = arr[x];
+        var temp = arr[x];
         arr[x] = arr[x-1];
         arr[x-1] = temp;
     }
