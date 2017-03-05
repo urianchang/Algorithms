@@ -18,7 +18,7 @@ function palindrome1(string) {
 }
 
 function palindrome2(string) {
-    var lowerStrArr = string.toLowerCase().match(/[a-z]/g);
+    var lowerStrArr = string.toLowerCase().match(/[a-z0-9]/g);
     for (var i = 0; i < lowerStrArr.length/2; i++) {
         if (lowerStrArr[i] != lowerStrArr[lowerStrArr.length-1-i]){
             return false;
