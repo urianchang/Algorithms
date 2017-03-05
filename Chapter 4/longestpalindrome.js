@@ -53,9 +53,49 @@ function longestpal(string) {
   }
 }
 
+//Version 2: Main function that gets longest palindrome
+function longestpal2(string) {
+  var newStr = string.toLowerCase().match(/[a-z0-9]/g).join("");
+  //Check if the whole string is a palindrome
+  if (palcheck(newStr)){
+    return newStr;
+  }
+  //Create array of palindromes
+  var pals = [];
+  for (var idx = 0; idx < newStr.length-1; idx++){
+    var pal = newStr[idx];
+    var letter = newStr[idx];
+    for (var i = idx+1; i < newStr.length; i++) {
+      pal += newStr[i];
+      if (newStr[i] == letter) {
+        if (palcheck(pal)) {
+          pals.push(pal);
+        }
+      }
+    }
+  }
+  //Find longest palindrome in array
+  if (pals.length < 1) {
+    return string[0];
+  } else {
+    var longest = pals[0];
+    for (var x = 0; x < pals.length; x++) {
+      if (pals[x].length > longest.length) {
+        longest = pals[x];
+      }
+    }
+    return longest;
+  }
+}
+
 var str1 = "what up, daddy-o?";
 var str2 = "uh... not much";
-var str3 = "Yikes! my favorite racecar erupted!"; 
-console.log(longestpal(str1));
-console.log(longestpal(str2));
-console.log(longestpal(str3));
+var str3 = "Yikes! my favorite racecar erupted!";
+var str4 = "Hot puree eruption!";
+// console.log(longestpal(str1));
+// console.log(longestpal(str2));
+// console.log(longestpal(str3));
+console.log(longestpal2(str1));
+console.log(longestpal2(str2));
+console.log(longestpal2(str3));
+console.log(longestpal2(str4));
