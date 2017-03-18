@@ -1,11 +1,11 @@
 /*
-SList: Move Min to Front
+SList: Move Max to Back
 
 Create a standalone function that locates
-the minimum value in a linked list, and moves
-that node to the front of the list. Return
+the maximum value in a linked list, and moves
+that node to the back of the list. Return
 the new list, with all nodes still present,
-and all (except for the new head node) in
+and all (except for the new last node) in
 their original order.
 */
 
@@ -90,29 +90,32 @@ function sLinkedList() {
 }
 
 //Function to move min to Front
-function minToFront(sLinkedList) {
-  var min = sLinkedList.head;
+function maxToBack(sLinkedList) {
+  var max = sLinkedList.head;
   var N = sLinkedList.head;
   var prevN = sLinkedList.head;
   while (N.next) {
-    if (N.next.val < min.val) {
-      min = N.next;
+    if (N.next.val > max.val) {
+      max = N.next;
       prevN = N;
     }
     N = N.next;
   }
-  if (min == sLinkedList.head) {
+  if (max == sLinkedList.head) {
+    sLinkedList.head = max.next;
+    N.next = max;
+    max.next = null;
   } else {
-    prevN.next = min.next;
-    min.next = sLinkedList.head;
-    sLinkedList.head = min;
+    prevN.next = max.next;
+    N.next = max;
+    max.next = null;
   }
   return sLinkedList;
 }
 
 //Create the list(s)
 var list1 = new sLinkedList();
-var node1 = new ListNode(3);
+var node1 = new ListNode(6);
 var node2 = new ListNode(4);
 var node3 = new ListNode(5);
 list1.head = node1;
@@ -122,5 +125,5 @@ node2.next = node3;
 console.log("Before...");
 list1.display();
 console.log("After...");
-minToFront(list1);
+maxToBack(list1);
 list1.display();
