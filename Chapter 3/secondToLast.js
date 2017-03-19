@@ -5,7 +5,7 @@ Return the second-to-last element of an array.
 */
 
 function secondLast(arr) {
-  if (arr.length < 1) {
+  if (arr.length < 2) {
     return null;
   }
   return arr[arr.length-2];
