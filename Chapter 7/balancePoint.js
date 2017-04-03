@@ -12,20 +12,21 @@ function balPoint(arr) {
     for (var i = 1; i < arr.length; i++) {
         sumTotal += arr[i];
     }
-    // 2. Start adding from left and compare with half of total sum
-    var sumLeft = arr[0];
-    for (var idx = 1; idx < arr.length; idx++) {
+    // 2. Start adding from left and subtract each value from total sum
+    var sumLeft = 0;
+    for (var idx = 0; idx < arr.length; idx++) {
+        sumTotal -= arr[idx];
         sumLeft += arr[idx];
-        if (sumLeft == sumTotal/2) {
+        if (sumLeft == sumTotal) {
             return true;
         }
-        if (sumLeft > sumTotal/2) {
-            return false;
-        }
     }
+    return false;
 }
 
-var arr1 = [1, 2, 3, 4, 10];
-var arr2 = [1, 2, 3, 2, 1];
+var arr1 = [1, 2, 3, 4, 10];  //: true
+var arr2 = [1, 2, 3, 2, 1];   //: false
+var arr3 = [-1, 3, 1, 1];   //: true
 console.log(balPoint(arr1));
 console.log(balPoint(arr2));
+console.log(balPoint(arr3));

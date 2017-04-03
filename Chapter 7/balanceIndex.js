@@ -6,33 +6,27 @@ Return the balance index, where sums are equal on either side.
 Return -1 if none exist.
 */
 
+//: Similar solution as Balance Point, but do the summing from left at end of the loop
 function balIndex (arr) {
-    if (arr.length <= 2) {
-        return -1;
-    }
-    var sumLeft = arr[0];
-    var trackerLeft = 0;
-    var sumRight = arr[arr.length-1];
-    var trackerRight = arr.length - 1;
-    var count = 2;
-    while (count < arr.length) {
-        if (sumRight > sumLeft) {
-            trackerLeft++;
-            sumLeft += arr[trackerLeft];
-        } else if (sumLeft > sumRight) {
-            trackerRight--;
-            sumRight += arr[trackerRight];
-        } else if (sumLeft == sumRight) {
-            trackerLeft++;
-            return trackerLeft;
-        }
-        count++;
-    }
-    return -1;
+  // 1. Get total sum of the array
+  var sumTotal = arr[0];
+  for (var i = 1; i < arr.length; i++) {
+      sumTotal += arr[i];
+  }
+  // 2. Start adding from left and remove each value from total sum
+  var sumLeft = 0;
+  for (var idx = 0; idx < arr.length; idx++) {
+      sumTotal -= arr[idx];
+      if (sumLeft == sumTotal) {
+          return idx;
+      }
+      sumLeft += arr[idx];
+  }
+  return -1;
 }
 
 
 var arr1 = [-2, 5, 7, 0, 3];    //: 2
 var arr2 = [9, 9];      //: -1
-console.log(balIndex(arr1));
-console.log(balIndex(arr2));
+var arr3 = [3, -2, 0, 4, 6, -5];    //: 3
+console.log(balIndex(arr3));
