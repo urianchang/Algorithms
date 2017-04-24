@@ -2,6 +2,11 @@
 Array: Insertion Sort
 
 Create a function to sort an unsorted array in-place.
+
+Details -
+An element which is to be 'insert'ed in this sorted
+sub-list, has to find its appropriate place and then
+it has to be inserted there.
 */
 
 function insertSort(arr) {
