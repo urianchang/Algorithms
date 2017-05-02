@@ -45,3 +45,30 @@ function Zib(num) {
 console.log(Zib(10));   // 15
 console.log(Zib(100));  // 128
 console.log(Zib(2467)); // 3186
+
+//: For visualization purposes, console log Zibonacci series
+// console.log("");
+// console.log("Zib series:");
+// for (var idx = 0; idx < 20; idx++) {
+//     console.log(Zib(idx));
+// }
+// console.log("");
+
+//: Second part
+function bestZibNum(num) {
+    var idx = 0;
+    var result = Zib(idx);
+    while (result <= num) {
+        idx++;
+        result = Zib(idx);
+        //: This will find the first time the result is achieved
+        if (result == num) {
+            //: Result will be repeated again, so return the next index
+            return idx += 3;
+        }
+    }
+    return null;
+}
+
+console.log(bestZibNum(3186));  // 2467
+console.log(bestZibNum(2467));  // null
