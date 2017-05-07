@@ -12,8 +12,14 @@ function wordArr(str) {
     var arr = [];
     var wordStr = "";
     for (var i=0; i < str.length; i++) {
-        if (str[i] == )
+        if (str[i] == " " || str[i] == "\t" || str[i] == "\n") {
+            arr.push(wordStr);
+            wordStr = "";
+        } else {
+            wordStr += str[i];
+        }
     }
+    arr.push(wordStr);
     return arr;
 }
 
