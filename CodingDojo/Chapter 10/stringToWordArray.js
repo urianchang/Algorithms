@@ -15,6 +15,8 @@ function wordArr(str) {
         if (str[i] == " " || str[i] == "\t" || str[i] == "\n") {
             arr.push(wordStr);
             wordStr = "";
+        } else if (str[i] == "." || str[i] == "!" || str[i] == "?" || str[i] == "," || str[i] == "'" || str[i] == '"' || str[i] == ":" || str[i] == ";") {
+            continue;
         } else {
             wordStr += str[i];
         }
