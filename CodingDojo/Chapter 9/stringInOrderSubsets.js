@@ -17,16 +17,31 @@ function makeSubsets(str, arr, memo) {
         arr.push("");
     }
     if (memo < 0) {
-        arr.push(str);
+        // arr.push(str);
         return arr;
     }
     var char = str[memo];
     arr.push(char);
     for (var i = 0; i < memo; i++) {
-        arr.push(str[i] + char);
+        for (var idx = i+1; idx < str.length; idx++){
+            // console.log(i, idx, str.slice(i, idx));
+            if (idx == i) {
+                continue;
+            } else if (idx <= memo) {
+                arr.push(str.slice(i, idx) + char);
+            } else {
+                var newSub = str.slice(i, memo-1) + char + str.slice(idx);
+                if (arr.includes(newSub) === false) {
+                    arr.push(newSub);
+                }
+            }
+        }
     }
     return makeSubsets(str, arr, memo - 1);
 }
 
 var str1 = "abc";
 console.log(strSubsets(str1));   // ["", "c", "b", "bc", "a", "ac", "ab", "abc"] in any order
+
+var str2 = "abcd";
+console.log(strSubsets(str2));
