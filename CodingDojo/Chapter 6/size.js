@@ -6,3 +6,4 @@ number of values in our queue.
 */
 
 const Node = require('./_NodeSLL');
+const Q = require('./_SLQueue');
