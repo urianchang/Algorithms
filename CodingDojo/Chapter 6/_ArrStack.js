@@ -57,4 +57,4 @@ ArrStack.prototype.size = function() {
     return this.values.length;
 }
 
-module.exports = SLQueue;
+module.exports = ArrStack;
