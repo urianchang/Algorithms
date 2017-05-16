@@ -1,5 +1,7 @@
 //: Stack implementation based on Singly linked list
 
+const Node = require('./_NodeSLL');
+
 function SLStack() {
     this.head = null;
 }

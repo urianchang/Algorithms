@@ -1,5 +1,7 @@
 //: Singly Linked List Queue
 
+const Node = require('./_NodeSLL');
+
 function SLQueue() {
     var head = null;
     var tail = null;
