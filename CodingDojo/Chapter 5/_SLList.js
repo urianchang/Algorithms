@@ -56,7 +56,7 @@ SLList.prototype.prepend = function(val, target) {
                     var temp = runner.next;
                     runner.next = newNode;
                     newNode.next = temp;
-                    break;
+                    return this;
                 }
                 runner = runner.next;
             }
@@ -90,6 +90,27 @@ SLList.prototype.remove = function(val) {
             return this;
         }
     }
+}
+
+//: Add new List Node after given value
+SLList.prototype.append = function(val, target) {
+    var newNode = new Node(val);
+    if (!this.head) {
+        this.head = newNode;
+    } else {
+        var runner = this.head;
+        while (runner.next) {
+            if (runner.val === target) {
+                var temp = runner.next;
+                runner.next = newNode;
+                newNode.next = temp;
+                return this;
+            }
+            runner = runner.next;
+        }
+        runner.next = newNode;
+    }
+    return this;
 }
 
 module.exports = SLList;
