@@ -66,4 +66,30 @@ SLList.prototype.prepend = function(val, target) {
     return this;
 }
 
+//: Remove value and return list
+SLList.prototype.remove = function(val) {
+    if (!this.head) {
+        console.log("List is empty");
+        return this;
+    } else {
+        if (this.head.val === val) {
+            this.head = this.head.next;
+            console.log(`${val} has been removed`);
+            return this;
+        } else {
+            var runner = this.head;
+            while (runner.next) {
+                if (runner.next.val === val) {
+                    runner.next = runner.next.next;
+                    console.log(`${val} has been removed`);
+                    return this;
+                }
+                runner = runner.next;
+            }
+            console.log(`${val} cannot be found in the list`);
+            return this;
+        }
+    }
+}
+
 module.exports = SLList;
