@@ -1,29 +1,16 @@
-//: Singly-linked List
+/*
+SLList: Prepend Val
+
+Create prependVal(ListNode, val, before) to insert
+a new ListNode with val immediately before the node
+containing before (or at end, if no node contains before).
+Return the new list.
+*/
 
 const Node = require('./_NodeSLL');
 
 function SLList() {
     this.head = null;
-}
-
-//: Add List Node to the back of the list
-SLList.prototype.addBack = function(val) {
-    var newNode = new ListNode(val);
-    var n = this.head;
-    while (n.next) {
-      n = n.next;
-    }
-    n.next = newNode;
-    return this;
-}
-
-//: Return last value
-SLList.prototype.lastValue = function() {
-    var N = this.head;
-    while (N.next) {
-      N = N.next
-    }
-    return N.val;
 }
 
 //: Display all nodes in list
@@ -39,7 +26,6 @@ SLList.prototype.display = function() {
     return this;
 }
 
-//: Insert value before given value. Return new list.
 SLList.prototype.prepend = function(val, target) {
     var newNode = new Node(val);
     if (!this.head) {
@@ -66,4 +52,13 @@ SLList.prototype.prepend = function(val, target) {
     return this;
 }
 
-module.exports = SLList;
+var SLL = new SLList();
+var node1 = new Node(1);
+var node2 = new Node(2);
+var node3 = new Node(3);
+node1.next = node2;
+node2.next = node3;
+// SLL.prepend(0, 1);
+SLL.head = node1;
+SLL.prepend(0, 2);
+SLL.display();
