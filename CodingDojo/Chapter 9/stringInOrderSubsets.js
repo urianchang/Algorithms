@@ -55,4 +55,4 @@ var str1 = "abc";
 console.log(strSubsets(str1));   // ["", "c", "b", "bc", "a", "ac", "ab", "abc"] in any order
 
 var str2 = "abcd";
-console.log(strSubsets(str2).length);
+// console.log(strSubsets("abcde").length);
