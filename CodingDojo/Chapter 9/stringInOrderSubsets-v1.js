@@ -6,6 +6,9 @@ in-order character subset of str. The resultant array itself
 need not be in any specific order -- it is the subset of letters
 in each string that must be in the same order as they were in the
 original string.
+
+Version 1 - Does not scale above 3-character words.
+
 */
 
 function strSubsets(str) {
@@ -54,5 +57,5 @@ function makeSubsets(str, arr, memo) {
 var str1 = "abc";
 console.log(strSubsets(str1));   // ["", "c", "b", "bc", "a", "ac", "ab", "abc"] in any order
 
-var str2 = "abcd";
+var str2 = "abcd";  // This does not work as expected.
 // console.log(strSubsets("abcde").length);
