@@ -13,6 +13,7 @@ function BTNode(value) {
     this.val = value;
     this.left = null;
     this.right = null;
+    this.count = 1;
 }
 
 function BST() {
@@ -25,7 +26,10 @@ BST.prototype.add = function(value) {
     } else {
         var runner = this.root;
         while (runner) {
-            if (value < runner.val) {
+            if (value === runner.val) {
+                runner.count++;
+                break;
+            } else if (value < runner.val) {
                 if (!runner.left) {
                     runner.left = new BTNode(value);
                     break;
@@ -45,5 +49,11 @@ BST.prototype.add = function(value) {
 }
 
 var tree = new BST();
+tree.add(3);
+console.log(tree);
+tree.add(4);
+console.log(tree);
+tree.add(2);
+console.log(tree);
 tree.add(3);
 console.log(tree);
