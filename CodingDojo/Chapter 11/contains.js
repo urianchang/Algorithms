@@ -59,14 +59,17 @@ BST.prototype.contains = function(value) {
     }
     var runner = this.root;
     while (runner) {
+        //: If value is found...
         if (value === runner.val) {
             return true;
         }
+        //: If value is less than...
         if (value < runner.val) {
             if (!runner.left) {
                 return false;
             }
             runner = runner.left;
+        //: If value is greater than...
         } else {
             if (!runner.right) {
                 return false;
