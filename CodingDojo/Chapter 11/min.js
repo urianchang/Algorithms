@@ -50,29 +50,25 @@ BST.prototype.add = function(value) {
     }
 }
 
-BST.prototype.min = function() {
+BST.prototype.minimum = function() {
     //: Check if root node exists
     if (this.root === null) {
         return null;
     }
     var runner = this.root;
-    var min = this.root.val;
-    while (runner) {
-        if (runner.val < min) {
-            min = runner.val;
-        }
+    while (runner.left) {
         runner = runner.left;
     }
-    return min;
+    return runner.val;
 }
 
 var tree = new BST();
-console.log(tree.contains(4));  //: false
+console.log(tree.minimum());  //: null
 tree.add(3);
-console.log(tree.contains(4));  //: false
+console.log(tree.minimum());  //: 3
 tree.add(4);
-console.log(tree.contains(4));  //: true
+console.log(tree.minimum());  //: 3
 tree.add(2);
-console.log(tree.contains(1));  //: false
+console.log(tree.minimum());  //: 2
 tree.add(1);
-console.log(tree.contains(1));  //: true
+console.log(tree.minimum());  //: 1
