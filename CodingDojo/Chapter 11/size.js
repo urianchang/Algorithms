@@ -51,22 +51,27 @@ BST.prototype.add = function(value) {
 }
 
 BST.prototype.size = function() {
-    var size = 0;
-    var runner = this.root;
-    while (runner.right || runner.left) {
-        size++;
-        runner = runner.right;
+    if (this.root === null) {
+        return 0;
     }
-    return runner.val;
+    //: Helper function to recursively count leaf nodes
+    function flood(leaf) {
+        if (leaf === null) {
+            return 0;
+        }
+        return 1 + flood(leaf.left) + flood(leaf.right);
+    }
+    return flood(this.root);
 }
 
 var tree = new BST();
-console.log(tree.size());  //:
+console.log(tree.size());  //: 0
 tree.add(3);
-console.log(tree.size());  //:
+console.log(tree.size());  //: 1
 tree.add(4);
-console.log(tree.size());  //:
+console.log(tree.size());  //: 2
 tree.add(2);
-console.log(tree.size());  //:
+console.log(tree.size());  //: 3
+tree.add(1);
 tree.add(5);
-console.log(tree.size());  //:
+console.log(tree.size());  //: 5
