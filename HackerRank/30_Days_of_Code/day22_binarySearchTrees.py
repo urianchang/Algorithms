@@ -29,10 +29,8 @@ class Solution:
     def getHeight(self,root):
         #Write your code here
         if root is None:
-            return 0
-        else:
-            return 1 + max(self.getHeight(root.right), self.getHeight(root.left))
-
+            return -1
+        return 1 + max(self.getHeight(root.right), self.getHeight(root.left))
 }
 
 T=int(raw_input())
