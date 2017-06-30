@@ -27,10 +27,18 @@ class Solution:
                 root.right=cur
         return root
     def levelOrder(self,root):
-  	    #Write your code here
-        
-
-
+  	    # Create list with root
+        q = [ root ]
+        # Iterate through the list: 'top' -> 'bottom'
+        for n in q:
+            # Print value in-line
+            print str(n.data),
+            # Check for left node to add to list
+            if n.left:
+                q.append(n.left)
+            # Check for right node to add to list
+            if n.right:
+                q.append(n.right)
 
 T=int(raw_input())
 myTree=Solution()
