@@ -58,6 +58,7 @@ BST.prototype.height = function() {
     return getHeight(this.root);
 }
 
+//: Recursive helper function to find height
 function getHeight(node) {
     if (node === null) {
         return 0;
