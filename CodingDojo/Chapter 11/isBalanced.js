@@ -69,15 +69,22 @@ function getHeight(node) {
     return 1 + Math.max(getHeight(node.left), getHeight(node.right));
 }
 
-//:
+BST.prototype.isBalanced = function() {
+    if (this.root === null) {
+        return true;
+    }
+    return Math.abs(getHeight(this.root.left) - getHeight(this.root.right)) <= 1;
+}
 
 var tree = new BST();
-console.log(tree.height()); //: 0
+console.log(tree.isBalanced()); //: true
 tree.add(3);
-console.log(tree.height()); //: 1
-tree.add(4);
-console.log(tree.height()); //: 2
 tree.add(2);
-console.log(tree.height()); //: 2
+tree.add(1);
+console.log(tree.isBalanced()); //: false
+tree.add(4);
+console.log(tree.isBalanced()); //: true
 tree.add(5);
-console.log(tree.height()); //: 3
+tree.add(6);
+tree.add(7);
+console.log(tree.isBalanced()); //: false
