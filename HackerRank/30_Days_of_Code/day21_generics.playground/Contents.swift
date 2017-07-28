@@ -11,7 +11,11 @@ struct Printer<T> {
      **/
     
     // Write your code here
-    
+    func printArray(array: Array<Any>) {
+        for item in array {
+            print(item)
+        }
+    }
 }
 
 var n = Int(readLine()!)!
