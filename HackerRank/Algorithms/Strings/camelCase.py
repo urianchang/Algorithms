@@ -14,3 +14,8 @@ Given 's', print the number of words in s on a new line.
 import sys
 
 s = raw_input().strip()
+c = 1
+for i in range(len(s)):
+    if s[i] in "ABCDEFGHIJKLMNOPQRSTUVWXYZ":
+        c += 1
+print c
