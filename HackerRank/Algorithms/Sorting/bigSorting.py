@@ -16,3 +16,6 @@ unsorted_i = 0
 for unsorted_i in xrange(n):
     unsorted_t = str(raw_input().strip())
     unsorted.append(unsorted_t)
+unsorted.sort(key=int)
+for el in unsorted:
+    print el
