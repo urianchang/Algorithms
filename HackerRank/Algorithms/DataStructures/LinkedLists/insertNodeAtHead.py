@@ -13,3 +13,7 @@ def Insert(head, data):
     if head == None:
         head = Node(data)
     else:
+        node = Node(data)
+        node.next = head
+        head = node
+    return head
