@@ -21,7 +21,13 @@ for each transaction.
 import sys
 
 def feeOrUpfront(n, k, x, d, p):
-    
+    feeOption = 0
+    for i in xrange(n):
+        feeOption += max(k, ((x/100.0)*p[i]))
+    if feeOption <= d:
+        return "fee"
+    else:
+        return "upfront"
 
 if __name__ == "__main__":
     q = int(raw_input().strip())
