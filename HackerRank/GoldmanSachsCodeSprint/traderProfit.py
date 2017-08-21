@@ -20,7 +20,7 @@ profit Mike can make in at most k transactions.
 import sys
 
 def traderProfit(k, n, A):
-    # Complete this function
+    # Complete the function below
 
 if __name__ == "__main__":
     q = int(raw_input().strip())
