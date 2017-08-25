@@ -12,14 +12,13 @@ absolute different between any two elements in the array.
 import sys
 
 def minimumAbsoluteDifference(n, arr):
-    # Complete this function
+    return min(abs(num1 - num2) for (num1, num2) in zip(arr, arr[1:]))
 
 if __name__ == "__main__":
     n = int(raw_input().strip())
-    arr = map(int, raw_input().strip().split(' '))
+    arr = sorted(map(int, raw_input().strip().split(' ')))
     result = minimumAbsoluteDifference(n, arr)
     print result
-
 
 '''
 Sample Input:
