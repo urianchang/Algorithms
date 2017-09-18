@@ -16,8 +16,14 @@ in any order.
 import sys
 
 n = int(raw_input().strip())
-calories = map(int, raw_input().strip().split(' '))
+calories = sorted(map(int, raw_input().strip().split(' ')))
 
+count = total = 0
+while count != n:
+    total += 2**count * calories.pop()
+    count += 1
+
+print total
 
 '''
 Sample Input:
