@@ -14,7 +14,38 @@ TWIST: Don't print the first half of the original array. Print a dash for any
 element from the first half.
 """
 
+n = int(raw_input().strip())
+count = 0
+l = []
+max_val = 0
+while count < n:
+    integer, string = raw_input().strip().split()
+    integer = int(integer)
+    max_val = integer if integer > max_val else max_val
+    l.append([integer, string])
+    count += 1
 
+# Create list of counts
+c = [0] * (max_val + 1)
+for i in xrange(len(l)):
+    c[l[i][0]] += 1
+
+# Iterate through count list and add up previous values
+p = 0
+for i in xrange(max_val+1):
+    p += c[i]
+    c[i] = p
+
+# Iterate through list backwards, compare to count list, and insert into sorted list
+half = n / 2
+s = [""] * n
+for i in xrange(len(l)):
+    rev = len(l) - 1 - i
+    val = "-" if rev < half else l[rev][1]
+    s[ c[l[rev][0]] - 1 ] = val
+    c[l[rev][0]] -= 1
+
+print " ".join(s)
 
 """
 Sample input:
