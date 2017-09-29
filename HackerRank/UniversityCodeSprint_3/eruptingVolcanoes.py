@@ -20,15 +20,43 @@ in the experiment's area.
 """
 import sys
 
+# Function for plotting lava effect on the matrix
+def plotLava(a, x, y, w):
+    pass
+
+# Function for creating the study area matrix
+def createArea(n):
+    return [[0]*(n+1) for _ in xrange(n)]
+
+# [
+#     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+#     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+#     [0, 0, 2, 2, 2, 0, 0, 0, 0, 0],
+#     [0, 0, 2, 3, 2, 0, 0, 0, 0, 0],
+#     [0, 0, 2, 2, 3, 1, 2, 1, 2, 1],
+#     [0, 0, 0, 0, 1, 0, 2, 0, 2, 0],
+#     [0, 0, 0, 0, 2, 2, 6, 4, 6, 2],
+#     [0, 0, 0, 0, 1, 0, 4, 4, 4, 0],
+#     [0, 0, 0, 0, 2, 2, 6, 4, 6, 2],
+#     [0, 0, 0, 0, 1, 0, 2, 0, 2, 0]
+# ]
+
 if __name__ == "__main__":
     n = int(raw_input().strip())    # Dimension of the square study area
     m = int(raw_input().strip())    # Number of active volcanoes in area
+    # If only 1 volcano, return the power of lava
+    # if m == 1:
+    #     x, y, w = map(int, raw_input().strip().split())
+    #     print w
+    # else:
+    studyArea = createArea(n)
     for a0 in xrange(m):
-        x, y, w = raw_input().strip().split(' ')    # x, y = coordinates; w = power of lava
+        x, y, w = raw_input().strip().split(' ')
         x, y, w = [int(x), int(y), int(w)]
-
-def plotVolcano(l, x, y, w):
-
+        # Plot volcano epicenter
+        studyArea[y][x] += w
+        plotLava(studyArea, x, y, w)
+    print studyArea
 
 """
 Sample Input:
