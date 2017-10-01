@@ -22,23 +22,54 @@ import sys
 
 # Function for plotting lava effect on the matrix
 def plotLava(a, x, y, w):
-    pass
+    x_right = x
+    x_left = x
+    y_top = y
+    y_bottom = y
+    og = w
+    while w > 0:
+        w -= 1
+        diff = og - w
+        x_right += 1
+        y_top -= 1
+        x_left -= 1
+        y_bottom += 1
+        if (x_right < len(a[0])):
+            a[y][x_right] += w
+        if (x_left >= 0):
+            a[y][x_left] += w
+        if (y_top >= 0):
+            a[y_top][x] += w
+            count = diff
+            w_top = w
+            w_bot = w
+            for fwd in xrange(x+1, len(a[0])):
+                if count != 0:
+                    a[y_top][fwd] += w
+                    count -= 1
+                else:
+                    w_top -= 1
+                    a[y_top][fwd] += w_top
+            # for bwd in xrange(0, x):
+            #
+        if (y_bottom < len(a[0])):
+            pass
 
 # Function for creating the study area matrix
 def createArea(n):
-    return [[0]*(n+1) for _ in xrange(n)]
+    return [[0]*(n) for _ in xrange(n)]
 
 # [
-#     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-#     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-#     [0, 0, 2, 2, 2, 0, 0, 0, 0, 0],
-#     [0, 0, 2, 3, 2, 0, 0, 0, 0, 0],
-#     [0, 0, 2, 2, 3, 1, 2, 1, 2, 1],
-#     [0, 0, 0, 0, 1, 0, 2, 0, 2, 0],
-#     [0, 0, 0, 0, 2, 2, 6, 4, 6, 2],
-#     [0, 0, 0, 0, 1, 0, 4, 4, 4, 0],
-#     [0, 0, 0, 0, 2, 2, 6, 4, 6, 2],
-#     [0, 0, 0, 0, 1, 0, 2, 0, 2, 0]
+# [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+# [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+# [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+# [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+# [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+# [2, 3, 4, 5, 6, 5, 4, 3, 2, 1],
+# [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+# [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+# [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+# [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 # ]
 
 if __name__ == "__main__":
