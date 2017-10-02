@@ -34,10 +34,12 @@ def plotLava(a, x, y, w):
         y_top -= 1
         x_left -= 1
         y_bottom += 1
+        # row where volcano erupted
         if (x_right < len(a[0])):
             a[y][x_right] += w
         if (x_left >= 0):
             a[y][x_left] += w
+        
         if (y_top >= 0):
             a[y_top][x] += w
             count = diff
@@ -50,8 +52,13 @@ def plotLava(a, x, y, w):
                 else:
                     w_top -= 1
                     a[y_top][fwd] += w_top
-            # for bwd in xrange(0, x):
-            #
+            for bwd in reversed(xrange(0, x)):
+                if count != 0:
+                    a[y_bottom][bwd] += w
+                    count -= 1
+                else:
+                    w_bot += 1
+                    a[y_bottom][bwd] += w_bot
         if (y_bottom < len(a[0])):
             pass
 
