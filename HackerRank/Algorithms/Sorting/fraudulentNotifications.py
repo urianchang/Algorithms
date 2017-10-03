@@ -17,28 +17,59 @@ numbers from smallest to greatest. If there is an odd number of numbers,
 the middle one is picked. If there is an even number of numbers, median
 is then defined to be the average of the two middle values.
 """
+import sys
+import bisect
+'''
+Useful reading about bisect...
+
+https://docs.python.org/2/library/bisect.html
+
+TL;DR: This method allows us to insert a value into a sorted array without
+        having to resort it.
+'''
 
 n, d = map(int, raw_input().strip().split())
 expenses = map(int, raw_input().strip().split())
 notifications = 0
+data = []
 
-for i in xrange(len(expenses)):
-    if i < d:
-        continue
-    if i == d:
-        data_unsorted = expenses[ i-d : i ]
-        data = sorted(data_unsorted)
-    if i > d:
-        data_unsorted.pop(0)
-        data_unsorted.append(expenses[i])
-        data = sorted(data_unsorted)
+# Unused helper function: Counting Sort
+def countingSort(a):
+    max_val = max(a)
+    frequency = [0] * (max_val+1)
+    sorts = [0] * len(a)
+    for i in xrange(len(a)):
+        frequency[a[i]] += 1
+    for i in xrange(1, max_val+1):
+        frequency[i] += frequency[i-1]
+    for i in xrange(len(a)):
+        num = a[i]
+        sorts[ frequency[num] - 1 ] = num
+        frequency[num] -= 1
+    return sorts
+
+# Create sorted data set from index 0 to first d
+for i in xrange(d):
+    # Use bisect to keep data set sorted
+    bisect.insort(data, expenses[i])
+
+# Now start from first d to end of data set to check for notifications
+for i in xrange(d, n):
+
     # Find median of transaction history
     if d%2 == 0:    # Check if d is even
         median = (data[int(d/2)] + data[int(d/2) - 1]) / 2.0
     else:
         median = data[int(d/2)]
+
+    # Determine if a notification is necessary
     if expenses[i] >= 2*(median):
         notifications += 1
+
+    # Modify data set: remove oldest value and add new value
+    to_remove = bisect.bisect(data, expenses[i - d]) - 1
+    data.pop(to_remove)
+    bisect.insort(data, expenses[i])
 
 print notifications
 
