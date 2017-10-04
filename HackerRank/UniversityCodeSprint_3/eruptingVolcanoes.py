@@ -21,12 +21,13 @@ in the experiment's area.
 import sys
 
 # Function for plotting lava effect on the matrix
-def plotLava(a, x, y, w):
+def plotLava(a, x, y, w, n):
     x_right = x
     x_left = x
     y_top = y
     y_bottom = y
     og = w
+
     while w > 0:
         w -= 1
         diff = og - w
@@ -34,67 +35,90 @@ def plotLava(a, x, y, w):
         y_top -= 1
         x_left -= 1
         y_bottom += 1
+
         # row where volcano erupted
-        if (x_right < len(a[0])):
+        if (x_right < n):
             a[y][x_right] += w
         if (x_left >= 0):
             a[y][x_left] += w
-        
+
+        # top rows
         if (y_top >= 0):
             a[y_top][x] += w
-            count = diff
-            w_top = w
-            w_bot = w
-            for fwd in xrange(x+1, len(a[0])):
-                if count != 0:
+            count1 = count2 = diff
+            w_right = w
+            w_left = w
+            for fwd in xrange(x+1, n):
+                if count1 != 0:
                     a[y_top][fwd] += w
-                    count -= 1
+                    count1 -= 1
                 else:
-                    w_top -= 1
-                    a[y_top][fwd] += w_top
+                    w_right -= 1
+                    if w_right < 0:
+                        continue
+                    a[y_top][fwd] += w_right
             for bwd in reversed(xrange(0, x)):
-                if count != 0:
-                    a[y_bottom][bwd] += w
-                    count -= 1
+                if count2 != 0:
+                    a[y_top][bwd] += w
+                    count2 -= 1
                 else:
-                    w_bot += 1
-                    a[y_bottom][bwd] += w_bot
-        if (y_bottom < len(a[0])):
-            pass
+                    w_left -= 1
+                    if w_left < 0:
+                        continue
+                    a[y_top][bwd] += w_left
+
+        # bottom rows
+        if (y_bottom < n):
+            a[y_bottom][x] += w
+            count_bot = count_bot2 = diff
+            w_right2 = w
+            w_left2 = w
+            for fwd in xrange(x+1, n):
+                if count_bot != 0:
+                    a[y_bottom][fwd] += w
+                    count_bot -= 1
+                else:
+                    w_right2 -= 1
+                    if w_right2 < 0:
+                        continue
+                    a[y_bottom][fwd] += w_right2
+            for bwd in reversed(xrange(0, x)):
+                if count_bot2 != 0:
+                    a[y_bottom][bwd] += w
+                    count_bot2 -= 1
+                else:
+                    w_left2 -= 1
+                    if w_left2 < 0:
+                        continue
+                    a[y_bottom][bwd] += w_left2
 
 # Function for creating the study area matrix
 def createArea(n):
     return [[0]*(n) for _ in xrange(n)]
 
-# [
-# [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-# [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-# [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-# [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-# [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-# [2, 3, 4, 5, 6, 5, 4, 3, 2, 1],
-# [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-# [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-# [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-# [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-# ]
-
 if __name__ == "__main__":
     n = int(raw_input().strip())    # Dimension of the square study area
     m = int(raw_input().strip())    # Number of active volcanoes in area
     # If only 1 volcano, return the power of lava
-    # if m == 1:
-    #     x, y, w = map(int, raw_input().strip().split())
-    #     print w
-    # else:
-    studyArea = createArea(n)
-    for a0 in xrange(m):
-        x, y, w = raw_input().strip().split(' ')
-        x, y, w = [int(x), int(y), int(w)]
-        # Plot volcano epicenter
-        studyArea[y][x] += w
-        plotLava(studyArea, x, y, w)
-    print studyArea
+    if m == 1:
+        x, y, w = map(int, raw_input().strip().split())
+        print w
+    else:
+        studyArea = createArea(n)
+        for a0 in xrange(m):
+            x, y, w = raw_input().strip().split(' ')
+            x, y, w = [int(x), int(y), int(w)]
+
+            # Plot volcano epicenter
+            studyArea[y][x] += w
+            plotLava(studyArea, x, y, w, n)
+
+        # Find max lava effect of the study area
+        max_effect = 0
+        for row in studyArea:
+            if max(row) > max_effect:
+                max_effect = max(row)
+        print max_effect
 
 """
 Sample Input:
