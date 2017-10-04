@@ -16,6 +16,34 @@ be performed in order to make the array beautiful.
 n = int(raw_input().strip())
 A = map(int, raw_input().strip().split())
 
+def howManySwaps(arr, n):
+    # Create dictionary of int-value (key) and index (value)
+    d = {}
+    for idx in xrange(n):
+        d[arr[idx]] = idx
+
+    # Create sorted list
+    sorted_list = sorted(arr)
+    swaps = 0   # Count of swaps
+
+    # Iterate through the input list and compare to sorted list
+    for i in xrange(n):
+        # If value in input list doesn't equal the one in sorted list, swap
+        if arr[i] != sorted_list[i]:
+            swaps += 1
+            og_idx = d[sorted_list[i]]
+            d[arr[i]] = d[sorted_list[i]]
+            arr[i], arr[og_idx] = sorted_list[i], arr[i]
+
+    # Return total number of swaps
+    return swaps
+
+# Check swaps for ascending order...
+ascending = howManySwaps(A, n)
+# Check swaps for descending order...
+descending = howManySwaps(list(reversed(A)), n)
+# Print the minimum number of swaps
+print min(ascending, descending)
 
 """
 Sample Input:
