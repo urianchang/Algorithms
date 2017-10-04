@@ -24,6 +24,32 @@ the two rules above. If this is not possible, print NO.
 N = int(raw_input().strip())
 B = map(int, raw_input().strip().split())
 
+# NOTE: Because of the rules, total food stocks must be even
+
+# Submission 1: Passed all test cases
+# if sum(B)%2 != 0:
+#     print 'NO'
+# else:
+#     count = 0
+#     for i in xrange(N-1):
+#         if B[i]%2 != 0:
+#             count += 2
+#             B[i+1] += 1   # Not necessary to increase count of current
+#     if B[N-1]%2 != 0:
+#         print 'NO'
+#     else:
+#         print count
+
+# Submission 2: Optimized to only loop through the list once
+count = 0
+for i in xrange(N-1):
+    if B[i]%2 != 0:
+        count += 2
+        B[i+1] += 1
+if B[N-1]%2 != 0:
+    print 'NO'
+else:
+    print count
 
 
 """
