@@ -39,7 +39,7 @@ def howManySwaps(arr, n):
     return swaps
 
 # Check swaps for ascending order...
-ascending = howManySwaps(A, n)
+ascending = howManySwaps(list(A), n)    # Need to create copy of list
 # Check swaps for descending order...
 descending = howManySwaps(list(reversed(A)), n)
 # Print the minimum number of swaps
