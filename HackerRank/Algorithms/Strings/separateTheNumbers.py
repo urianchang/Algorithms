@@ -21,9 +21,7 @@ Constraints:
 
 q = int(raw_input().strip())    # Number of queries to be evaluated
 
-for _ in xrange(q):
-    query = raw_input().strip()
-    
+
 
 """
 Input:
