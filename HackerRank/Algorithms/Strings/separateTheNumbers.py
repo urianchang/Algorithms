@@ -19,9 +19,24 @@ Constraints:
     * Each character in s is a decimal digit from 0 to 9 (inclusive)
 """
 
-q = int(raw_input().strip())    # Number of queries to be evaluated
-
-
+for _ in xrange(int(raw_input().strip())):
+    num = raw_input().strip()
+    if len(num) <= 1:
+        print "NO"
+    else:
+        # Select starting number from inputted string
+        isBeautiful = False
+        for i in xrange(1, (len(num)//2)+1):
+            n = cur_n = int(num[:i])
+            test_string = num[:i]
+            # Create test string with the selected starting number
+            while len(test_string) < len(num):
+                cur_n += 1
+                test_string += str(cur_n)
+            if test_string == num:
+                isBeautiful = True
+                break
+        print "YES {}".format(n) if isBeautiful else "NO"
 
 """
 Input:
