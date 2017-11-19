@@ -1,0 +1,49 @@
+{
+    "logs": [
+        {
+            "name": "root", 
+            "args": [], 
+            "pathname": "log_to_json.py", 
+            "lineno": 62, 
+            "msg": "This is a warning message", 
+            "exc_info": null, 
+            "levelname": "WARNING"
+        }, 
+        {
+            "name": "root", 
+            "args": [], 
+            "pathname": "log_to_json.py", 
+            "lineno": 63, 
+            "msg": "This is a warning message", 
+            "exc_info": null, 
+            "levelname": "WARNING"
+        }, 
+        {
+            "name": "__main__", 
+            "args": [], 
+            "pathname": "log_to_json.py", 
+            "lineno": 60, 
+            "msg": "This is a debug message", 
+            "exc_info": null, 
+            "levelname": "DEBUG"
+        }, 
+        {
+            "name": "__main__", 
+            "args": [], 
+            "pathname": "log_to_json.py", 
+            "lineno": 61, 
+            "msg": "This is an info message", 
+            "exc_info": null, 
+            "levelname": "INFO"
+        }, 
+        {
+            "name": "__main__", 
+            "args": [], 
+            "pathname": "log_to_json.py", 
+            "lineno": 62, 
+            "msg": "This is a warning message", 
+            "exc_info": null, 
+            "levelname": "WARNING"
+        }
+    ]
+}
