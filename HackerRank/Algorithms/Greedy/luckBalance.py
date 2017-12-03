@@ -10,15 +10,21 @@ T: importance rating (1 == important, 0 == unimportant)
 """
 N, K = map(int, raw_input().strip().split())
 
-all_res = []
-imp_res = {}
+count = 0
+imp_res = []
 
 for i in xrange(N):
     L, T = map(int, raw_input().strip().split())
     if T == 1:
-        imp_res[i] = L
-    all_res.append(L)
+        imp_res.append(L)
+    else:
+        count += L
 
-if K >= len(imp_res.keys()):
-    print sum(all_res)
+if K >= len(imp_res):
+    print count + sum(imp_res)
 else:
+    imp_res = sorted(imp_res)
+    diff = len(imp_res) - K
+    win = sum(imp_res[0:diff])
+    lose = sum(imp_res[diff:])
+    print count - win + lose
