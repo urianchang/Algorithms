@@ -14,6 +14,6 @@ for v in a:
     else:
         d[v] = 1
 
-for val in set(a):
-    N -= d[val]
+for k in sorted(d.keys()):
     print N
+    N -= d[k]
