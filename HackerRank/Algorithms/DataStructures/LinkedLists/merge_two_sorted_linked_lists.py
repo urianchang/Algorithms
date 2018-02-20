@@ -19,3 +19,15 @@ URL: https://www.hackerrank.com/challenges/merge-two-sorted-linked-lists/problem
 """
 
 def MergeLists(headA, headB):
+    if headA == None and headB == None:
+        return None
+    if headA != None and headB == None:
+        return headA
+    if headA == None and headB != None:
+        return headB
+    if headA.data < headB.data:
+        headA.next = MergeLists(headA.next, headB)
+        return headA
+    else:
+        headB.next = MergeLists(headA, headB.next)
+        return headB
