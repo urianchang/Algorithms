@@ -2,6 +2,7 @@ My solutions to algorithms from the Coding Dojo algorithm book and from other re
 
 File structure directory:
 
+    * 'Codility' - Lessons completed from the Codility Platform
     * 'CodingDojo' - Algorithms from the Coding Dojo workbook. Completed with JavaScript.
     * 'HackerRank' - Algorithms from HackerRank. Completed with Python.
     * 'Misc' - Algorithms from miscellaneous resources.
