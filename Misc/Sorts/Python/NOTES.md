@@ -12,7 +12,13 @@ array is almost sorted.
 
 
 ## Selection sort
+Repeatedly find minimum element from unsorted part and putting it at the beginning.
+Maintains two subarrays in a given array: sorted and unsorted.
 
+__Time Complexity:__ O(n * n)
+__Space Complexity:__ O(1)
+__Uses:__ It never makes more than O(n) swaps and can be useful when memory write
+is a costly operation.
 
 
 ## Merge sort
