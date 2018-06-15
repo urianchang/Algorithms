@@ -43,7 +43,7 @@ def pivot_on_left(arr, left, right):
 
 
 def quickSort(arr, left, right):
-    #type: (list) -> None
+    #type: (list, int, int) -> None
     if right > left:
         # p_idx = pivot_on_right(arr, left, right)
         p_idx = pivot_on_left(arr, left, right)

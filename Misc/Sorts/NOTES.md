@@ -22,7 +22,14 @@ is a costly operation.
 
 
 ## Merge sort
+Divide and Conquer algorithm: divides input array in two halves, calls itself on
+the two halves and then merges the two sorted halves.
 
+__Time Complexity:__ O(n Log n)
+__Space Complexity:__ O(n)
+__Uses:__ Useful for sorting linked lists in O(n Log n), external sorting (handling
+  large amounts of data), and inversion count (how far/close the array is from  
+  being sorted).
 
 
 ## Heap sort
