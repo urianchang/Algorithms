@@ -2,7 +2,7 @@
 from utils import timer
 
 
-def insertionSort(arr):
+def insertion_sort(arr):
     # type: (list) -> None
     for i in range(1, len(arr)):
         cur_val = arr[i]
@@ -24,6 +24,6 @@ for ts in (ex1, ex2, ex3, ex4):
     print "Before: %s" % ts
 
     with timer():
-        insertionSort(ts)
+        insertion_sort(ts)
 
     print "After: %s\n" % ts

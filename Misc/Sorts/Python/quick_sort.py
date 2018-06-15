@@ -42,13 +42,13 @@ def pivot_on_left(arr, left, right):
     return p_right
 
 
-def quickSort(arr, left, right):
+def quick_sort(arr, left, right):
     #type: (list, int, int) -> None
     if right > left:
         # p_idx = pivot_on_right(arr, left, right)
         p_idx = pivot_on_left(arr, left, right)
-        quickSort(arr, left, p_idx - 1)
-        quickSort(arr, p_idx + 1, right)
+        quick_sort(arr, left, p_idx - 1)
+        quick_sort(arr, p_idx + 1, right)
 
 
 ex1 = [2, 1, 4, 5, 7, 1, 3, 9, 9, 2]
@@ -60,6 +60,6 @@ for ts in (ex1, ex2, ex3, ex4):
     print "Before: %s" % ts
 
     with timer():
-        quickSort(ts, 0, len(ts) - 1)
+        quick_sort(ts, 0, len(ts) - 1)
 
     print "After: %s\n" % ts

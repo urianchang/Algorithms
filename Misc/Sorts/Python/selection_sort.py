@@ -2,7 +2,7 @@
 from utils import timer
 
 
-def selectionSort(arr):
+def selection_sort(arr):
     # type: (list) -> None
     for i in range(len(arr)):
         min_cursor = i
@@ -21,6 +21,6 @@ for ts in (ex1, ex2, ex3, ex4):
     print "Before: %s" % ts
 
     with timer():
-        selectionSort(ts)
+        selection_sort(ts)
 
     print "After: %s\n" % ts

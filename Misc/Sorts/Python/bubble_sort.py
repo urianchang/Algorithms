@@ -2,7 +2,7 @@
 from utils import timer
 
 
-def bubbleSort(arr):
+def bubble_sort(arr):
     #type: (list) -> None
     done = False
     while not done:
@@ -22,6 +22,6 @@ for ts in (ex1, ex2, ex3, ex4):
     print "Before: %s" % ts
 
     with timer():
-        bubbleSort(ts)
+        bubble_sort(ts)
 
     print "After: %s\n" % ts

@@ -2,7 +2,7 @@
 from utils import timer
 
 
-def mergeSort(arr):
+def merge_sort(arr):
     #type: (list) -> None
     if len(arr) <= 1:
         return arr
@@ -10,7 +10,7 @@ def mergeSort(arr):
     left = [val for val in arr if val < mid]
     middle = [val for val in arr if val == mid]
     right = [val for val in arr if val > mid]
-    return mergeSort(left) + middle + mergeSort(right)
+    return merge_sort(left) + middle + merge_sort(right)
 
 
 ex1 = [2, 1, 4, 5, 7, 1, 3, 9, 9, 2]
@@ -22,6 +22,6 @@ for ts in (ex1, ex2, ex3, ex4):
     print "Before: %s" % ts
 
     with timer():
-        mergeSort(ts)
+        merge_sort(ts)
 
     print "After: %s\n" % ts
