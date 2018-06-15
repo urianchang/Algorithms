@@ -58,7 +58,11 @@ in different ways by changing the choice of pivot; however, merge sort is genera
 considered better when data is huge and stored in external storage.
 
 ## Bubble sort
+Simplest sorting algorithm that works by repeatedly sorting adjacent elements if
+they are in the wrong order.s
 
+__Time Complexity:__ O(n * n) [Worst case: reverse order], O(n) [Best case: already sorted]
+__Auxiliary Space:__ O(1)
 
 
 ## Shell sort
