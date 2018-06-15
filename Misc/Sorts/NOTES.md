@@ -88,7 +88,12 @@ __Additional Notes:__
 
 
 ## Comb sort
+Improvement over bubble sort by using gaps of size more than 1. The gap starts
+with a large value and shrinks by a factor of 1.3 in every iteration until it
+reaches the value 1.
 
+__Time Complexity:__ O(n * n) [Worst case], O(n) [Best case]
+__Auxiliary Space:__ O(1)
 
 
 ## Bucket sort
