@@ -31,7 +31,7 @@ is a costly operation.
 
 ## Quick sort
 Divide and Conquer algorithm: pick an element as pivot and partitions array
-around the picked pivot. All this should be done in linear time.
+around the picked pivot. All this should be done in linear time and __in place__.
 
 Many different versions:
   1. Always pick first element as pivot
