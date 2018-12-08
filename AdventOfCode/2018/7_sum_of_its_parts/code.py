@@ -30,4 +30,4 @@ while pq:
         if possible_step not in steps and all(p in steps for p in prereq):
             heapq.heappush(pq, possible_step)
 
-print(f"Part 1 - Order: {''.join(steps)}")
+print(f"Part 1 - Order: {''.join(steps)}")  # GKCNPTVHIRYDUJMSXFBQLOAEWZ
