@@ -1,5 +1,5 @@
 # Python 3.7
-from collections import defaultdict
+from collections import deque, defaultdict
 
 
 SAMPLES = [
@@ -11,9 +11,11 @@ SAMPLES = [
     "30 players; last marble is worth 5807 points", # high score is 37305
 ]
 INPUT_1 = "476 players; last marble is worth 71657 points"
+INPUT_2 = "476 players; last marble is worth 7165700 points"
 
 
 def run_game(setup):
+    # list insertion and deletion -> O(n^2) time
     parts = setup.strip().split()
     players = int(parts[0])
     last = int(parts[-2])
@@ -48,17 +50,40 @@ def run_game(setup):
 
             if marble == last:
                 break
-    return scoreboard
+    return max(scoreboard.values())
 
+
+def run_game_optimized(setup):
+    # Use a deque ["double-ended queue" (doubly-linked list in C)]
+    parts = setup.strip().split()
+    max_players = int(parts[0])
+    last = int(parts[-2])
+
+    scores = defaultdict(int)
+    circle = deque([0])
+
+    for marble in range(1, last+1):
+        if marble % 23 == 0:
+            circle.rotate(7)
+            scores[marble % max_players] += marble + circle.pop()
+            circle.rotate(-1)
+        else:
+            circle.rotate(-1)
+            circle.append(marble)
+
+    return max(scores.values())
 
 # Test and check with examples
-expected = [32, 8317, 146373, 2764, 54718, 37305]
-for idx, ex in enumerate(SAMPLES):
-    scores = run_game(ex)
-    high_score = max(scores.values())
-    # print(f"For example {idx}, high score is: {high_score}")
-    assert high_score == expected[idx]
+# expected = [32, 8317, 146373, 2764, 54718, 37305]
+# for idx, ex in enumerate(SAMPLES):
+#     hi_score = run_game(ex)
+#     assert hi_score == expected[idx]
+#
+#     hi_2 = run_game_optimized(ex)
+#     assert hi_2 == expected[idx]
 
-p1_scores = run_game(INPUT_1)
-p1_high = max(p1_scores.values())
+p1_high = run_game(INPUT_1)
 print(f"Part 1 - High score is: {p1_high}") # 386018
+
+p2_high = run_game_optimized(INPUT_2)
+print(f"Part 2 - High score is: {p2_high}") # 3085518618
