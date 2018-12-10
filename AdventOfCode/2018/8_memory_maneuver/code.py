@@ -17,15 +17,31 @@ def parse(data):
     children, metas = data[:2]
     data = data[2:]
     meta_totals = 0
-
-    # print(f"c: {children}, m: {metas}, d: {data}")
+    child_nodes = []
 
     for i in range(children):
-        meta_total, data = parse(data)
+        meta_total, node_value, data = parse(data)
         meta_totals += meta_total
+        child_nodes.append(node_value)
 
     meta_totals += sum(data[:metas])
-    return (meta_totals, data[metas:])
 
-meta_sum, remaining = parse(file_data)
-print(f"Part 1 - Metadata sum: {meta_sum}") # 45194
+    if children == 0:
+        return (
+            meta_totals,
+            sum(data[:metas]),
+            data[metas:]
+        )
+    else:
+        return (
+            meta_totals,
+            sum(
+                child_nodes[i - 1] for i in data[:metas]
+                if i > 0 and i <= len(child_nodes)
+            ),
+            data[metas:]
+        )
+
+total, root_value, _ = parse(file_data)
+print(f"Part 1 - Metadata sum: {total}") # 45194
+print(f"Part 2 - Value of root node: {root_value}") # 22989
