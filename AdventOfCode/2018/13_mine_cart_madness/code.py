@@ -12,6 +12,7 @@ class Cart:
         self.x = x
         self.y = y
         self.turn = turn
+        self.dead = False
 
 
 def setup(file_lines):
@@ -86,7 +87,7 @@ def move_cart(cart, mat):
         }[cart.turn]
 
 
-def run_once(carts, map):
+def tick_and_check_for_crashes(carts, map):
     sorted_carts = sorted(carts, key = lambda x: (x.y, x.x))
     collided = False
     for car in sorted_carts:
@@ -97,27 +98,63 @@ def run_once(carts, map):
         if len(set(positions)) != len(positions):
             collided = True
             break
-
     return collided
 
 
-matrix, carts = setup(open('input.txt').readlines())
-smooth = True
-count = 0
-while smooth:
-    # print(f"Tick: {count}")
-    did_collide = run_once(carts, matrix)
-    smooth = not did_collide
-    count += 1
+def run_p1():
+    """Find the location of the first crash
+    """
+    matrix, carts = setup(open('input.txt').readlines())
+    smooth = True
+    count = 0
+    while smooth:
+        # print(f"Tick: {count}")
+        did_collide = tick_and_check_for_crashes(carts, matrix)
+        smooth = not did_collide
+        count += 1
 
-positions = [(c.x, c.y) for c in carts]
-uniq = set()
-dupes = []
-for pos in positions:
-    if pos not in uniq:
-        uniq.add(pos)
-    else:
-        dupes.append(pos)
+    positions = [(c.x, c.y) for c in carts]
+    uniq = set()
+    dupes = []
+    for pos in positions:
+        if pos not in uniq:
+            uniq.add(pos)
+        else:
+            dupes.append(pos)
 
-assert len(dupes) == 1
-print(f"Part 1 - Collision @ {dupes[0][0]},{dupes[0][1]}")
+    assert len(dupes) == 1
+    return (dupes[0][0], dupes[0][1])
+
+
+def the_one(carts, matrix):
+    tick = 0
+    while len(carts) != 1:
+        # print(f"Count: {tick}")
+        sorted_carts = sorted(carts, key = lambda x: (x.y, x.x))
+        collided = False
+        for car in sorted_carts:
+            if not car.dead:
+                move_cart(car, matrix)
+
+                # Check if it collides with another cart
+                positions = [(c.x, c.y) for c in sorted_carts if not c.dead]
+                if len(set(positions)) != len(positions):
+                    for cr in sorted_carts:
+                        if cr.x == car.x and cr.y == car.y:
+                            cr.dead = True
+        # Remove the dead carts
+        carts = [c for c in carts if c.dead == False]
+        tick += 1
+    return carts[0]
+
+
+def run_p2():
+    """Find the location of the surviving cart
+    """
+    mat, carts = setup(open('input.txt').readlines())
+    the_cart = the_one(carts, mat)
+    return (the_cart.x, the_cart.y)
+
+
+print(f"Part 1 - Collision @ {run_p1()}")   # 8,3
+print(f"Part 2 - Last car @ {run_p2()}")    # 73,121
