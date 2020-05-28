@@ -1,6 +1,6 @@
 # https://www.hackerrank.com/challenges/append-and-delete/problem
 
-def appendAndDelete(s, t, k):
+def appendAndDelete(s: str, t: str, k: int) -> str:
     """Determine if s can be converted into t in exactly k moves.
 
     There are only two types of moves:
@@ -15,29 +15,29 @@ def appendAndDelete(s, t, k):
     Returns:
         :str: "Yes", if "s" can be converted into "t"; otherwise, "No"
     """
-    if s == t:
-        if k >= 2:
-            return "Yes"
+    # Find parts of the strings that are common
+    common = 0
+    for i in range(min(len(s), len(t))):
+        if s[i] == t[i]:
+            common += 1
         else:
-            return "No"
-    count = max(len(s), len(t))
-    diff = 0
-    for i in range(count):
-        if i < (len(s) - 1):
-            char1 = s[i]
-            if i < (len(t) - 1):
-                char2 = t[i]
-                if char1 == char2:
-                    continue
-                else:
-                    diff += 2
-            else:
-                diff += 1
-        else:
-            diff += 1
+            break
 
+    diff_s = len(s) - common
+    diff_t = len(t) - common
 
-
+    if (diff_s + diff_t) > k:
+        # We need more moves to account for all the differences
+        return "No"
+    elif (diff_s + diff_t)%2 == k%2:
+        # If we have an even number of differences,
+        # we need an even number of moves (and vice versa)
+        return "Yes"
+    elif (len(s) + len(t) - k) < 0:
+        # If we completely delete the word, we can allow for a lot more moves
+        return "Yes"
+    else:
+        return "No"
 
 
 assert appendAndDelete("hackerhappy", "hackerrank", 9) == "Yes"
