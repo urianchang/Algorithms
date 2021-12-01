@@ -5,9 +5,11 @@ as well as from other resources.
 
 ## Directory:
 
+    * 'AdventOfCode' - Advent of Code challenges
     * 'Codility' - Lessons completed from the Codility Platform
     * 'CodingDojo' - Algorithms from the Coding Dojo workbook. Completed with JavaScript.
     * 'HackerRank' - Algorithms from HackerRank. Completed with Python.
+    * 'LeetCode' - Problems from Leet Code.
     * 'Misc' - Algorithms from miscellaneous resources.
     * 'Sorts' - Practice with sorting algorithms.
 
