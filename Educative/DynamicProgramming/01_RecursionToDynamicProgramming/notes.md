@@ -27,3 +27,19 @@ def countChar(str, char):
 
 ```
 
+Recursion can be an excellent brute force technique, but the solutions may have high time complexity.
+
+**Dynamic programming**: name of solving problems that depend on subproblems. Memorization 
+techniques are an addition to dynamic programming.
+
+Two basic approaches:
+1. Bottom-up: start from the most basic unit (sub-problem) and then build up to the problem.
+2. Top-down: start from the problem and build and use smaller components as needed
+    * Recursion is essentially the top-down approach
+
+Prerequisites to using dynamic programming:
+* optimal substructure: optimal solution to a problem can be build using the optimal solutions
+of the problem's subproblems
+* overlapping subproblems: repeating subproblems avoid recomputation
+
+The ability to express an algorithm recursively does not mean that algorithm has an optimal substructure.
